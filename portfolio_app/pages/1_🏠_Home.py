@@ -1,8 +1,6 @@
 import streamlit as st
 import os
 
-# Get the directory that the current script is in, 
-# then go up one level to find the 'assets' folder
 base_path = os.path.dirname(__file__) # Points to the 'pages' folder
 img_path = os.path.join(base_path, "..", "assets", "MYID2.png")
 
