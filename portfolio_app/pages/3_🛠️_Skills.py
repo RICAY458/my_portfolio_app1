@@ -16,13 +16,12 @@ st.markdown("""
         }
             
         .card {
-            padding: 15px;
+            padding: 10px;
             border-radius: 15px;
             background-color: #ffffff;
             box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
             margin-bottom: 20px;
             text-align: center;
-            min-height: 250px;
         }
 
         .skill-label {
