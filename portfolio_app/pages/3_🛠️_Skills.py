@@ -54,7 +54,7 @@ st.divider()
 # --- Certificates Section ---
 st.subheader("📜 Certificates")
 
-# Data definition
+# Make sure your filenames MATCH exactly what is in your GitHub assets folder
 skills_data = [
     {"name": "Python - Cisco Networking Academy", "img": "Python.png"},
     {"name": "Python - Simplilearn", "img": "python1.png"},
@@ -64,23 +64,24 @@ skills_data = [
     {"name": "Android Development", "img": "android.png"},
 ]
 
-# Create the 3-column grid
-for i in range(0, len(skills_data), 3):
-    cols = st.columns(3)
-    for j in range(3):
-        if i + j < len(skills_data):
-            skill = skills_data[i + j]
-            # Construct the path: go up one level from 'pages' to root, then into 'assets'
+# This logic prevents extra blank boxes
+cols_per_row = 3
+for i in range(0, len(skills_data), cols_per_row):
+    cols = st.columns(cols_per_row)
+    # Get the current chunk of 3 items
+    chunk = skills_data[i : i + cols_per_row]
+    
+    for idx, skill in enumerate(chunk):
+        with cols[idx]:
+            # Construct the path
             img_path = os.path.join(base_path, "..", "assets", skill["img"])
             
-            with cols[j]:
+            # We ONLY draw the card if the image exists
+            if os.path.exists(img_path):
                 st.markdown('<div class="card">', unsafe_allow_html=True)
-                
-                # Check if file exists to prevent deployment crash
-                if os.path.exists(img_path):
-                    st.image(img_path, use_container_width=True)
-                else:
-                    st.error("Image not found")
-                
+                st.image(img_path, use_container_width=True)
                 st.caption(f"**{skill['name']}**")
                 st.markdown('</div>', unsafe_allow_html=True)
+            else:
+                # If image is missing, show a clear warning instead of a blank box
+                st.warning(f"Missing: {skill['img']}")
