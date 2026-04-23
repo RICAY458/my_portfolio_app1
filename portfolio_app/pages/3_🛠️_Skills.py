@@ -1,8 +1,6 @@
 import streamlit as st
 import os
 
-# 1. Path Logic: This ensures images load on Streamlit Cloud
-# It looks for the 'assets' folder one level up from the 'pages' folder
 base_path = os.path.dirname(__file__)
 
 st.markdown("""
@@ -43,7 +41,7 @@ skills = {
     "HTML / CSS / JavaScript": 70
 }
 
-# Create a clean layout for progress bars
+#layout for progress bars
 for skill, level in skills.items():
     st.markdown(f'<p class="skill-label">{skill}</p>', unsafe_allow_html=True)
     st.progress(level)
