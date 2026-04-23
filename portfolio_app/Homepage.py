@@ -6,7 +6,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# Custom CSS for modern UI
+# Custom CSS
 st.markdown("""
     <style>
         [data-testid="stAppViewContainer"] {
